@@ -1,0 +1,129 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Hero from '../components/Hero.astro';
+import Reveal from '../components/Reveal.astro';
+import SectionHeading from '../components/SectionHeading.astro';
+import CtaBand from '../components/CtaBand.astro';
+import Icon from '../components/Icon.astro';
+import { site } from '../data/site';
+
+const principles = [
+  { icon: 'search', title: 'Source with intent', text: 'We choose manufacturers on merit — specification, certification and consistency — not on convenience.' },
+  { icon: 'shield', title: 'Quality before price', text: 'A low price means nothing if the product fails. We qualify supply first, then negotiate hard.' },
+  { icon: 'handshake', title: 'Long-term relationships', text: 'We build durable partnerships with both factories and buyers, so supply stays steady and trusted.' },
+  { icon: 'globe', title: 'A bridge between markets', text: 'From Hong Kong we connect Asian and European production with the buyers who need it most.' },
+];
+---
+<Layout title="About" path="/about" description="Comstrat Industrial Ltd is a Hong Kong-based trading company connecting trusted battery, lubricant and spare-part manufacturers with buyers across Europe.">
+  <Hero compact>
+    <div class="max-w-3xl">
+      <Reveal><span class="eyebrow-dark">About Comstrat</span></Reveal>
+      <Reveal delay={80}>
+        <h1 class="mt-4 font-display text-4xl font-extrabold leading-tight tracking-tight text-white sm:text-5xl">
+          A Hong Kong sourcing hub between Asia and Europe
+        </h1>
+      </Reveal>
+      <Reveal delay={160}>
+        <p class="mt-6 text-lg leading-relaxed text-slatey-300">
+          {site.name} is a trading company built on a simple idea: find high-quality automotive
+          products at the best possible price, anywhere in the world, and deliver them reliably to
+          the European market.
+        </p>
+      </Reveal>
+    </div>
+  </Hero>
+
+  <!-- STORY -->
+  <section class="bg-white py-20 sm:py-28">
+    <div class="container-x">
+      <div class="grid gap-12 lg:grid-cols-12 lg:gap-16">
+        <div class="lg:col-span-7">
+          <Reveal class="space-y-6 text-base leading-relaxed text-slatey-600">
+            <h2 class="font-display text-2xl font-bold text-ink-900 sm:text-3xl">Who we are</h2>
+            <p>
+              Based in Central, Hong Kong, Comstrat Industrial Ltd specialises in the trade of
+              automotive SLI batteries, lubricants and spare parts. Our position at one of the
+              world's great trading crossroads lets us work directly with manufacturers across Asia
+              and Europe — and channel their output to customers throughout European markets.
+            </p>
+            <p>
+              We are, at heart, a sourcing partner. Buyers come to us when they want the
+              right product at the right price without managing dozens of factory relationships,
+              quality checks and shipping arrangements themselves. We take on that complexity so
+              our customers can focus on selling.
+            </p>
+            <p>
+              Our mission is straightforward — to source high-quality products at the best prices —
+              and everything we do is organised around delivering on it, order after order.
+            </p>
+          </Reveal>
+        </div>
+        <div class="lg:col-span-5">
+          <Reveal delay={120} class="rounded-3xl border border-slatey-200 bg-slatey-50 p-8 shadow-card">
+            <h3 class="font-display text-lg font-bold text-ink-900">At a glance</h3>
+            <dl class="mt-6 space-y-5">
+              <div class="flex items-start gap-3">
+                <Icon name="pin" class="mt-0.5 h-5 w-5 shrink-0 text-brand-600" />
+                <div>
+                  <dt class="text-sm font-semibold text-ink-900">Headquarters</dt>
+                  <dd class="text-sm text-slatey-600">{site.address.city}</dd>
+                </div>
+              </div>
+              <div class="flex items-start gap-3">
+                <Icon name="battery" class="mt-0.5 h-5 w-5 shrink-0 text-brand-600" />
+                <div>
+                  <dt class="text-sm font-semibold text-ink-900">Specialisation</dt>
+                  <dd class="text-sm text-slatey-600">SLI batteries, lubricants & spare parts</dd>
+                </div>
+              </div>
+              <div class="flex items-start gap-3">
+                <Icon name="globe" class="mt-0.5 h-5 w-5 shrink-0 text-brand-600" />
+                <div>
+                  <dt class="text-sm font-semibold text-ink-900">Markets served</dt>
+                  <dd class="text-sm text-slatey-600">Across Europe</dd>
+                </div>
+              </div>
+              <div class="flex items-start gap-3">
+                <Icon name="truck" class="mt-0.5 h-5 w-5 shrink-0 text-brand-600" />
+                <div>
+                  <dt class="text-sm font-semibold text-ink-900">Sourcing from</dt>
+                  <dd class="text-sm text-slatey-600">{site.sourcing.join(', ')}</dd>
+                </div>
+              </div>
+            </dl>
+          </Reveal>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PRINCIPLES -->
+  <section class="bg-slatey-50 py-20 sm:py-28">
+    <div class="container-x">
+      <Reveal>
+        <SectionHeading
+          eyebrow="What guides us"
+          title="The principles behind every order"
+        />
+      </Reveal>
+      <div class="mt-14 grid gap-6 sm:grid-cols-2">
+        {principles.map((p, i) => (
+          <Reveal delay={i * 80} class="flex gap-5 rounded-3xl border border-slatey-200 bg-white p-7 shadow-card">
+            <span class="grid h-12 w-12 shrink-0 place-items-center rounded-2xl bg-ink-900 text-brand-400">
+              <Icon name={p.icon} class="h-6 w-6" />
+            </span>
+            <div>
+              <h3 class="font-display text-lg font-bold text-ink-900">{p.title}</h3>
+              <p class="mt-2 text-sm leading-relaxed text-slatey-600">{p.text}</p>
+            </div>
+          </Reveal>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <CtaBand
+    title="Looking for a dependable supplier?"
+    text="Whether you need batteries, lubricants or parts, we would be glad to discuss your requirements and put a proposal together."
+  />
+</Layout>

@@ -1,0 +1,18 @@
+---
+// Reusable dark hero wrapper used at the top of every page.
+interface Props {
+  compact?: boolean;
+  class?: string;
+}
+const { compact = false, class: className = '' } = Astro.props;
+---
+<section class={`relative overflow-hidden bg-ink-900 ${className}`}>
+  <!-- Background layers -->
+  <div class="pointer-events-none absolute inset-0 bg-grid-dark [background-size:56px_56px] opacity-60"></div>
+  <div class="pointer-events-none absolute -top-40 left-1/2 h-[520px] w-[820px] -translate-x-1/2 rounded-full bg-brand-500/20 blur-[120px]"></div>
+  <div class="pointer-events-none absolute inset-x-0 bottom-0 h-40 bg-gradient-to-b from-transparent to-ink-950/60"></div>
+
+  <div class:list={['container-x relative', compact ? 'pb-16 pt-32 sm:pt-36' : 'pb-24 pt-36 sm:pb-28 sm:pt-44']}>
+    <slot />
+  </div>
+</section>

@@ -1,0 +1,131 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Hero from '../components/Hero.astro';
+import Reveal from '../components/Reveal.astro';
+import Icon from '../components/Icon.astro';
+import { site } from '../data/site';
+
+// To enable the form: create a free form at https://formspree.io and replace
+// FORMSPREE_ID below with your form ID (e.g. "mywkabcd"). Until then the form
+// posts to the placeholder and Formspree returns an error — the mailto/phone
+// links always work.
+const FORMSPREE_ID = 'FORMSPREE_ID';
+const formAction = `https://formspree.io/f/${FORMSPREE_ID}`;
+
+const details = [
+  { icon: 'pin', label: 'Office', value: `${site.address.line1}, ${site.address.line2}, ${site.address.city}` },
+  { icon: 'mail', label: 'Email', value: site.email, href: `mailto:${site.email}` },
+  { icon: 'phone', label: 'Phone', value: site.phone, href: `tel:${site.phoneHref}` },
+];
+
+const mapQuery = encodeURIComponent('China Insurance Group Building, 141 Des Voeux Road Central, Hong Kong');
+---
+<Layout title="Contact" path="/contact" description="Contact Comstrat Industrial Ltd in Hong Kong for automotive batteries, lubricants and spare parts supplied across Europe.">
+  <Hero compact>
+    <div class="max-w-3xl">
+      <Reveal><span class="eyebrow-dark">Contact</span></Reveal>
+      <Reveal delay={80}>
+        <h1 class="mt-4 font-display text-4xl font-extrabold leading-tight tracking-tight text-white sm:text-5xl">
+          Let's talk supply
+        </h1>
+      </Reveal>
+      <Reveal delay={160}>
+        <p class="mt-6 text-lg leading-relaxed text-slatey-300">
+          Tell us what you need and the markets you serve. We typically respond to enquiries within
+          one business day.
+        </p>
+      </Reveal>
+    </div>
+  </Hero>
+
+  <section class="bg-white py-20 sm:py-28">
+    <div class="container-x">
+      <div class="grid gap-12 lg:grid-cols-12 lg:gap-16">
+        <!-- DETAILS -->
+        <div class="lg:col-span-5">
+          <Reveal>
+            <h2 class="font-display text-2xl font-bold text-ink-900">Get in touch directly</h2>
+            <p class="mt-3 text-base leading-relaxed text-slatey-600">
+              Prefer to reach us the traditional way? Use the details below — we're glad to help.
+            </p>
+            <ul class="mt-8 space-y-5">
+              {details.map((d) => (
+                <li class="flex items-start gap-4">
+                  <span class="grid h-11 w-11 shrink-0 place-items-center rounded-2xl bg-brand-50 text-brand-600 ring-1 ring-brand-100">
+                    <Icon name={d.icon} class="h-5 w-5" />
+                  </span>
+                  <div>
+                    <div class="text-xs font-semibold uppercase tracking-wider text-slatey-500">{d.label}</div>
+                    {d.href
+                      ? <a href={d.href} class="text-base font-medium text-ink-900 transition-colors hover:text-brand-600">{d.value}</a>
+                      : <p class="text-base font-medium text-ink-900">{d.value}</p>}
+                  </div>
+                </li>
+              ))}
+            </ul>
+          </Reveal>
+
+          <Reveal delay={120} class="mt-8 overflow-hidden rounded-3xl border border-slatey-200 shadow-card">
+            <iframe
+              title="Comstrat office location"
+              src={`https://www.google.com/maps?q=${mapQuery}&output=embed`}
+              width="100%"
+              height="260"
+              style="border:0"
+              loading="lazy"
+              referrerpolicy="no-referrer-when-downgrade"
+            ></iframe>
+          </Reveal>
+        </div>
+
+        <!-- FORM -->
+        <div class="lg:col-span-7">
+          <Reveal class="rounded-3xl border border-slatey-200 bg-slatey-50 p-7 shadow-card sm:p-9">
+            <h2 class="font-display text-2xl font-bold text-ink-900">Send an enquiry</h2>
+            <p class="mt-2 text-sm text-slatey-600">Fields marked with * are required.</p>
+            <form action={formAction} method="POST" class="mt-7 grid gap-5 sm:grid-cols-2">
+              <div class="sm:col-span-1">
+                <label for="name" class="mb-1.5 block text-sm font-medium text-ink-900">Name *</label>
+                <input id="name" name="name" type="text" required class="w-full rounded-xl border border-slatey-300 bg-white px-4 py-2.5 text-sm text-ink-900 outline-none transition focus:border-brand-400 focus:ring-2 focus:ring-brand-100" />
+              </div>
+              <div class="sm:col-span-1">
+                <label for="company" class="mb-1.5 block text-sm font-medium text-ink-900">Company</label>
+                <input id="company" name="company" type="text" class="w-full rounded-xl border border-slatey-300 bg-white px-4 py-2.5 text-sm text-ink-900 outline-none transition focus:border-brand-400 focus:ring-2 focus:ring-brand-100" />
+              </div>
+              <div class="sm:col-span-1">
+                <label for="email" class="mb-1.5 block text-sm font-medium text-ink-900">Email *</label>
+                <input id="email" name="email" type="email" required class="w-full rounded-xl border border-slatey-300 bg-white px-4 py-2.5 text-sm text-ink-900 outline-none transition focus:border-brand-400 focus:ring-2 focus:ring-brand-100" />
+              </div>
+              <div class="sm:col-span-1">
+                <label for="country" class="mb-1.5 block text-sm font-medium text-ink-900">Country / market</label>
+                <input id="country" name="country" type="text" class="w-full rounded-xl border border-slatey-300 bg-white px-4 py-2.5 text-sm text-ink-900 outline-none transition focus:border-brand-400 focus:ring-2 focus:ring-brand-100" />
+              </div>
+              <div class="sm:col-span-2">
+                <label for="interest" class="mb-1.5 block text-sm font-medium text-ink-900">Product of interest</label>
+                <select id="interest" name="interest" class="w-full rounded-xl border border-slatey-300 bg-white px-4 py-2.5 text-sm text-ink-900 outline-none transition focus:border-brand-400 focus:ring-2 focus:ring-brand-100">
+                  <option>SLI Batteries</option>
+                  <option>Lubricants</option>
+                  <option>Spare Parts</option>
+                  <option>Multiple / other</option>
+                </select>
+              </div>
+              <div class="sm:col-span-2">
+                <label for="message" class="mb-1.5 block text-sm font-medium text-ink-900">Message *</label>
+                <textarea id="message" name="message" rows="5" required class="w-full rounded-xl border border-slatey-300 bg-white px-4 py-2.5 text-sm text-ink-900 outline-none transition focus:border-brand-400 focus:ring-2 focus:ring-brand-100"></textarea>
+              </div>
+              <div class="sm:col-span-2">
+                <button type="submit" class="btn-primary w-full sm:w-auto">
+                  Send enquiry <Icon name="arrow" class="h-4 w-4" />
+                </button>
+                <p class="mt-3 text-xs text-slatey-500">
+                  Or email us directly at
+                  <a href={`mailto:${site.email}`} class="font-medium text-brand-600 hover:underline">{site.email}</a>.
+                </p>
+              </div>
+            </form>
+          </Reveal>
+        </div>
+      </div>
+    </div>
+  </section>
+</Layout>

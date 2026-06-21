@@ -1,0 +1,74 @@
+@import '@fontsource-variable/inter';
+@import '@fontsource-variable/sora';
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    @apply bg-white font-sans text-slatey-700 antialiased;
+  }
+
+  ::selection {
+    @apply bg-brand-500/20 text-ink-900;
+  }
+}
+
+@layer components {
+  /* Centered content container */
+  .container-x {
+    @apply mx-auto w-full max-w-content px-5 sm:px-8;
+  }
+
+  /* Buttons */
+  .btn {
+    @apply inline-flex items-center justify-center gap-2 rounded-full px-6 py-3 text-sm font-semibold tracking-tight transition-all duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-400 focus-visible:ring-offset-2;
+  }
+  .btn-primary {
+    @apply btn bg-brand-500 text-white shadow-[0_8px_24px_-8px_rgba(249,115,22,0.6)] hover:bg-brand-600 hover:shadow-[0_10px_30px_-8px_rgba(249,115,22,0.7)];
+  }
+  .btn-ghost-light {
+    @apply btn border border-white/20 bg-white/5 text-white backdrop-blur hover:border-white/40 hover:bg-white/10;
+  }
+  .btn-outline {
+    @apply btn border border-slatey-300 bg-white text-slatey-800 hover:border-brand-400 hover:text-brand-600;
+  }
+
+  /* Section heading eyebrow */
+  .eyebrow {
+    @apply inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.18em] text-brand-600;
+  }
+  .eyebrow-dark {
+    @apply inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.18em] text-brand-400;
+  }
+
+  /* Scroll reveal */
+  .reveal {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1),
+      transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+    will-change: opacity, transform;
+  }
+  .reveal.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  .reveal {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+}

@@ -1,0 +1,13 @@
+---
+// Wraps content in a scroll-reveal element. Animation handled by the global
+// IntersectionObserver in Layout.astro. Honors prefers-reduced-motion via CSS.
+interface Props {
+  as?: string;
+  delay?: number; // ms
+  class?: string;
+}
+const { as: Tag = 'div', delay = 0, class: className = '' } = Astro.props;
+---
+<Tag class={`reveal ${className}`} style={delay ? `transition-delay:${delay}ms` : undefined}>
+  <slot />
+</Tag>
