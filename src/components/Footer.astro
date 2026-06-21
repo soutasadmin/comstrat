@@ -1,7 +1,7 @@
 ---
 import Logo from './Logo.astro';
 import Icon from './Icon.astro';
-import { site, nav } from '../data/site';
+import { site, nav, url } from '../data/site';
 const year = new Date().getFullYear();
 ---
 <footer class="bg-ink-950 text-slatey-300">
@@ -24,7 +24,7 @@ const year = new Date().getFullYear();
         <ul class="mt-4 space-y-3 text-sm">
           {nav.map((item) => (
             <li>
-              <a href={item.href} class="text-slatey-400 transition-colors hover:text-brand-400">{item.label}</a>
+              <a href={url(item.href)} class="text-slatey-400 transition-colors hover:text-brand-400">{item.label}</a>
             </li>
           ))}
         </ul>

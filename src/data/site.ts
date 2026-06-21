@@ -17,6 +17,13 @@ export const site = {
   sourcing: ['Korea', 'China', 'Indonesia', 'Bulgaria', 'Italy', 'Ukraine', 'Spain'],
 };
 
+// Prepends Astro's BASE_URL so links work at both / (custom domain) and /comstrat/ (github.io).
+// Usage: url('/about') → '/comstrat/about'
+export const url = (path: string): string => {
+  const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+  return `${base}${path}`;
+};
+
 export const nav = [
   { label: 'Home', href: '/' },
   { label: 'About', href: '/about' },

@@ -1,10 +1,15 @@
 ---
 import Logo from './Logo.astro';
 import Icon from './Icon.astro';
-import { nav } from '../data/site';
+import { nav, url } from '../data/site';
 
-const path = Astro.url.pathname.replace(/\/$/, '') || '/';
-const isActive = (href: string) => (href === '/' ? path === '/' : path.startsWith(href));
+const pathname = Astro.url.pathname;
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+const isActive = (href: string) => {
+  const full = href === '/' ? base + '/' : base + href;
+  return href === '/' ? pathname === full || pathname === base
+    : pathname.startsWith(base + href);
+};
 ---
 <header
   id="site-header"
@@ -22,7 +27,7 @@ const isActive = (href: string) => (href === '/' ? path === '/' : path.startsWit
         {
           nav.map((item) => (
             <a
-              href={item.href}
+              href={url(item.href)}
               class:list={[
                 'rounded-full px-4 py-2 text-sm font-medium transition-colors',
                 isActive(item.href)
@@ -38,7 +43,7 @@ const isActive = (href: string) => (href === '/' ? path === '/' : path.startsWit
       </nav>
 
       <div class="flex items-center gap-2">
-        <a href="/contact" class="hidden btn-primary !px-5 !py-2.5 sm:inline-flex">
+        <a href={url('/contact')} class="hidden btn-primary !px-5 !py-2.5 sm:inline-flex">
           Get a quote
         </a>
         <button
@@ -67,7 +72,7 @@ const isActive = (href: string) => (href === '/' ? path === '/' : path.startsWit
         {
           nav.map((item) => (
             <a
-              href={item.href}
+              href={url(item.href)}
               class:list={[
                 'rounded-2xl px-4 py-3 text-base font-medium transition-colors',
                 isActive(item.href) ? 'bg-white/10 text-white' : 'text-white/75 hover:bg-white/5 hover:text-white',
@@ -78,7 +83,7 @@ const isActive = (href: string) => (href === '/' ? path === '/' : path.startsWit
           ))
         }
       </nav>
-      <a href="/contact" class="btn-primary mt-3 w-full">Get a quote</a>
+      <a href={url('/contact')} class="btn-primary mt-3 w-full">Get a quote</a>
     </div>
   </div>
 </header>

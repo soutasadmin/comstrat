@@ -1,7 +1,7 @@
 ---
 import Icon from './Icon.astro';
 import Reveal from './Reveal.astro';
-import { site } from '../data/site';
+import { site, url } from '../data/site';
 interface Props {
   title?: string;
   text?: string;
@@ -23,7 +23,7 @@ const {
           <p class="mt-4 text-base leading-relaxed text-slatey-300">{text}</p>
         </div>
         <div class="flex flex-col gap-3 sm:flex-row">
-          <a href="/contact" class="btn-primary">
+          <a href={url('/contact')} class="btn-primary">
             Contact us <Icon name="arrow" class="h-4 w-4" />
           </a>
           <a href={`mailto:${site.email}`} class="btn-ghost-light">

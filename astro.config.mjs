@@ -5,7 +5,6 @@ import sitemap from '@astrojs/sitemap';
 // https://astro.build/config
 export default defineConfig({
   site: 'https://www.comstrat-ltd.com',
-  base: '/',
-  trailingSlash: 'ignore',
+  base: '/comstrat',
   integrations: [tailwind(), sitemap()],
 });
