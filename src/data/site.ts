@@ -14,7 +14,7 @@ export const site = {
     city: 'Hong Kong',
   },
   // Manufacturing / sourcing regions
-  sourcing: ['Korea', 'China', 'Indonesia', 'Bulgaria', 'Italy', 'Ukraine', 'Spain'],
+  sourcing: ['Korea', 'China', 'Indonesia', 'Bulgaria', 'Italy', 'Ukraine'],
 };
 
 // Prepends Astro's BASE_URL so asset links stay correct regardless of deployment base.
